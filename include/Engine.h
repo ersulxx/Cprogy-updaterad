@@ -1,0 +1,38 @@
+#pragma once
+
+#include <SDL3/SDL.h>
+#include <vector>
+#include <memory>
+#include "Constants.h"
+#include <SDL3_ttf/SDL_ttf.h>
+
+
+namespace demo {
+
+    class Sprite;
+    typedef std::shared_ptr<Sprite> SpritePtr;
+
+    class Engine {
+    public:
+        Engine();
+        ~Engine();
+
+        SDL_Renderer* getRen() const;
+        SDL_Window* getWin() const;
+        TTF_Font* getFont() const;
+
+        void add(SpritePtr spr);
+        void remove(SpritePtr spr);
+        void run();
+
+    private:
+        SDL_Window* win;
+        SDL_Renderer* ren;
+        TTF_Font* font;
+        
+        std::vector<SpritePtr> sprites, added, removed;
+    };
+
+    extern Engine eng;
+
+}
