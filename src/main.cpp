@@ -7,17 +7,48 @@
 
 using namespace std;
 using namespace demo;
+
 int enemyHits = 0;
 LabelPtr label;
 LabelPtr label2;
 
-class Background : public Sprite {
-public:
-    Background() : Sprite(constants::background2_str, 0, 0) {}
-    void tick() override {} 
-};
+void setupGame()
+{
 
-int main(int argc, char* argv[]) {
+    // Skapa bakgrunder och lägg till i engine
+    auto bg1 = std::make_shared<demo::Background>(0);
+    auto bg2 = std::make_shared<demo::Background>(-constants::gScreenHeight);
+    eng.add(bg1);
+    eng.add(bg2);
+
+    // Skapa en spelare(Rocketship) och lägg till i engine
+    auto player = std::make_shared<Rocketship>();
+    eng.add(player);
+
+    // Skapa fiender och lägg till i engine
+    auto e1 = std::make_shared<FallingEnemy>(constants::alien_str, 100, -40, 2.0f);
+    auto e2 = std::make_shared<FallingEnemy>(constants::alien2_str, 300, -200, 1.5f);
+    eng.add(e1);
+    eng.add(e2);
+
+    // Skapa labels och lägg till i engine
+    label = Label::getLabelPtr(150, 150, 40, 50, "Antal nedskuttna:");
+    label2 = Label::getLabelPtr(200, 150, 40, 50, "0");
+    eng.add(label);
+    eng.add(label2);
+}
+
+
+int main()
+{
+    setupGame();
+    demo::eng.run();
+    return 0;
+}
+
+
+/*int main(int argc, char* argv[]) {
+
     SpritePtr bg = std::make_shared<Background>();
     eng.add(bg);
 
@@ -36,4 +67,4 @@ int main(int argc, char* argv[]) {
     eng.run();
     
     return 0;
-}
+}*/
