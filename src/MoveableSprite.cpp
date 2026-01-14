@@ -32,7 +32,7 @@ namespace demo {
 
     MoveableSprite::MoveableSprite(std::string path, float x, float y): Sprite(path, x, y) {}
 
-    MoveableSpritePtr getMoveableSprite(std::string path, float x, float y) {
+    MoveableSpritePtr MoveableSprite::getMoveableSprite(std::string path, float x, float y) {
         return MoveableSpritePtr(new MoveableSprite(path, x, y));
     }
 

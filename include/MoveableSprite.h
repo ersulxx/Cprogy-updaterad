@@ -37,7 +37,7 @@ namespace demo {
         void move(float dx, float dy);
 
 
-        public:
+        protected:
         MoveableSprite(std::string path, float x, float y);
 
 
