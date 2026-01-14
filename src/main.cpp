@@ -9,6 +9,7 @@ using namespace std;
 using namespace demo;
 
 int enemyHits = 0;
+
 LabelPtr label;
 LabelPtr label2;
 

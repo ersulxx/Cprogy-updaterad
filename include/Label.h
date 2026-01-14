@@ -16,7 +16,11 @@ namespace demo {
 
         ~Label();
 
+        void tick() {}
+
         void draw();
+
+        void onResize(int newW, int newH) override;
 
         void setText(std::string newText);
 
