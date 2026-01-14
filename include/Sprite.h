@@ -20,6 +20,7 @@ namespace demo
         SDL_FRect &getRect();
         SDL_Texture* getTexture() const;
         virtual void onResize(int newW, int newH) {}
+        virtual bool canTriggerGameOver() const { return false; }
         
         Sprite(const Sprite &other) = delete;
         const Sprite &operator=(const Sprite &other) = delete;

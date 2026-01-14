@@ -2,6 +2,104 @@
 #include "Constants.h"
 #include "Sprite.h"
 #include "MoveableSprite.h"
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
+#include <iostream>
+
+namespace demo {
+
+    Engine::Engine() {
+        if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
+            exit(EXIT_FAILURE);
+        }
+        TTF_Init();
+        win = SDL_CreateWindow("Generisk Motor", constants::gScreenWidth, constants::gScreenHeight, 0);
+        ren = SDL_CreateRenderer(win, NULL);
+        font = TTF_OpenFont(constants::fontPath.c_str(), 24);
+    }
+
+    Engine::~Engine() {
+        if (font) TTF_CloseFont(font);
+        TTF_Quit();
+        SDL_DestroyRenderer(ren);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+    }
+
+    void Engine::add(SpritePtr spr) { added.push_back(spr); }
+    void Engine::remove(SpritePtr spr) { removed.push_back(spr); }
+
+    void Engine::run() {
+        bool running = true;
+        const int FPS = 60;
+        const int TICKINTERVAL = 1000 / FPS;
+
+        while (running) {
+            Uint64 nextTick = SDL_GetTicks() + TICKINTERVAL;
+            SDL_Event event;
+
+            while (SDL_PollEvent(&event)) {
+                if (event.type == SDL_EVENT_QUIT) running = false;
+                // ... Hantera tangenter (KeyUp/Down etc) ...
+            }
+
+            // Uppdatera alla objekt
+            for (SpritePtr spr : sprites) spr->tick();
+
+            // Hantera Game Over (Helt generiskt!)
+            for (SpritePtr spr : sprites) {
+                if (spr->canTriggerGameOver()) {
+                    if (spr->getRect().y > constants::gScreenHeight - 60) {
+                        
+                        const SDL_MessageBoxButtonData buttons[] = {
+                            { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "Quit" }
+                        };
+                        const SDL_MessageBoxData messageboxdata = {
+                            SDL_MESSAGEBOX_INFORMATION, win, "Game Over", 
+                            "Spelet är slut!", SDL_arraysize(buttons), buttons, NULL
+                        };
+
+                        int buttonid;
+                        SDL_ShowMessageBox(&messageboxdata, &buttonid);
+                        running = false;
+                        break;
+                    }
+                }
+            }
+
+            // Lägg till/Ta bort sprites
+            for (SpritePtr spr : added) sprites.push_back(spr);
+            added.clear();
+
+            for (SpritePtr spr : removed) {
+                auto it = std::find(sprites.begin(), sprites.end(), spr);
+                if (it != sprites.end()) sprites.erase(it);
+            }
+            removed.clear();
+
+            // Rita allt
+            SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+            SDL_RenderClear(ren);
+            for (SpritePtr spr : sprites) spr->draw();
+            SDL_RenderPresent(ren);
+
+            Sint64 delay = nextTick - SDL_GetTicks();
+            if (delay > 0) SDL_Delay(delay);
+        }
+    }
+
+    Engine eng;
+}
+
+
+
+
+
+
+/*#include "Engine.h"
+#include "Constants.h"
+#include "Sprite.h"
+#include "MoveableSprite.h"
 #include "Label.h"
 #include "FallingEnemy.h"
 #include "Rocketship.h"
@@ -220,4 +318,4 @@ namespace demo {
 
     Engine eng;
 
-}
+}*/
