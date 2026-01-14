@@ -27,15 +27,16 @@ namespace demo {
 
         virtual void onKeyDown();
 
-        //hanterar kollision
+        //hanterar kollision, subklasserna kan hantera det
         virtual void onCollisionWith(SpritePtr other);
         
         
         ~MoveableSprite();
         
-        
+        //kollar om en kollision har skett
         bool collidedWith(MoveableSpritePtr other);
 
+        //float värden för ändring av horesontelsla och vertikala värderna 
         void move(float dx, float dy);
 
 

@@ -9,6 +9,11 @@ namespace demo {
 
     void MoveableSprite::tick() {}
     
+    /*
+    Alla subklasser har inte användning av knapptryckning och kollisons hantering funktionerna.
+    Därför är inte de funktionerna "Rent Virtuella". 
+    De subklasser som använder knapptryckning och kollisions hantering överskuggar funktionerna
+    */ 
     void MoveableSprite::onKeyUp() {}
     
     void MoveableSprite::onKeyLeft() {}
@@ -32,6 +37,7 @@ namespace demo {
 
     MoveableSprite::MoveableSprite(std::string path, float x, float y): Sprite(path, x, y) {}
 
+    
     MoveableSpritePtr MoveableSprite::getMoveableSprite(std::string path, float x, float y) {
         return MoveableSpritePtr(new MoveableSprite(path, x, y));
     }
