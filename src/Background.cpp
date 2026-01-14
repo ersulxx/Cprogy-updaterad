@@ -7,8 +7,8 @@ namespace demo {
         getRect().h = static_cast<float>(constants::gScreenHeight) + 2.0f;
     }
 
-    void Background::tick() {}
-    {
+    void Background::tick() {
+    
         float speed = 1.0f;
         getRect().y += speed;
         if (getRect().y >= constants::gScreenHeight) {
