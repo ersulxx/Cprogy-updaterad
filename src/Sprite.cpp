@@ -20,6 +20,9 @@ namespace demo {
         return rect;
     }
 
+    SDL_Texture* Sprite::getTexture() const {
+        return image;
+    }
 
     Sprite::Sprite(std::string path, float x, float y) {
 

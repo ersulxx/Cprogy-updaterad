@@ -18,6 +18,7 @@ namespace demo
         virtual void tick() = 0;
         virtual void draw();
         SDL_FRect &getRect();
+        SDL_Texture* getTexture() const;
         virtual void onResize(int newW, int newH) {}
         
         Sprite(const Sprite &other) = delete;
@@ -30,7 +31,7 @@ namespace demo
 
     private:
         SDL_FRect rect;
-        SDL_Texture *image = nullptr;
+        SDL_Texture *image;
     };
     typedef std::shared_ptr<Sprite> SpritePtr;
 }
