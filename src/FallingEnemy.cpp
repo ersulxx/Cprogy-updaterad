@@ -23,7 +23,7 @@ void FallingEnemy::tick() {
     }
 }
 
-void FallingEnemy::onCollisionWith(demo::MoveableSpritePtr other) {
+void FallingEnemy::onCollisionWith(demo::SpritePtr other) {
 
     if (std::dynamic_pointer_cast<::Bullet>(other)) {
         getRect().y = -getRect().h;

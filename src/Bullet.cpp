@@ -65,11 +65,16 @@ void Bullet::tick()
 
     if (getRect().y + getRect().h < 0)
     {
+<<<<<<< HEAD
         demo::eng.remove(std::static_pointer_cast<demo::Sprite>(std::enable_shared_from_this<demo::Sprite>::shared_from_this()));
+=======
+        //demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
+        demo::eng.remove(shared_from_this());
+>>>>>>> dd7f1d7ce16eca3bb49fab0d9a4da407f89de50e
     }
 }
 
-void Bullet::onCollisionWith(demo::MoveableSpritePtr other)
+void Bullet::onCollisionWith(demo::SpritePtr other)
 {
 
     if (std::dynamic_pointer_cast<::FallingEnemy>(other))
@@ -79,8 +84,13 @@ void Bullet::onCollisionWith(demo::MoveableSpritePtr other)
 
 
         demo::eng.remove(other);
+<<<<<<< HEAD
         demo::eng.remove(std::static_pointer_cast<demo::Sprite>(std::enable_shared_from_this<demo::Sprite>::shared_from_this()));
 
+=======
+        //demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
+        demo::eng.remove(shared_from_this());
+>>>>>>> dd7f1d7ce16eca3bb49fab0d9a4da407f89de50e
         enemyHits++;
         label2->setText(std::to_string(enemyHits));
     }
