@@ -9,7 +9,7 @@
 
 
 
-Bullet::Bullet(float x, float y, float speed) : demo::MoveableSprite(constants::bullet_str, x, y), speed(speed)
+Bullet::Bullet(float x, float y, float bulletSpeed) : demo::MoveableSprite(constants::bullet_str, x, y), bulletSpeed(bulletSpeed)
 {
 
     getRect().w *= 0.05f;
@@ -18,7 +18,7 @@ Bullet::Bullet(float x, float y, float speed) : demo::MoveableSprite(constants::
 
 void Bullet::tick()
 {
-    move(0.0f, -speed);
+    move(0.0f, -bulletSpeed);
 
     if (getRect().y + getRect().h < 0)
     {

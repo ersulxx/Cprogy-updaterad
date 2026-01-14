@@ -22,10 +22,7 @@ namespace constants
 	const std::string background_str {gResPath + "images/background-alternativ-1.jpg"}; 
 	const std::string background2_str {gResPath + "images/background-alternativ-2.png"};
 	const std::string bullet_str {gResPath + "images/bullet.png"};
-	const std::string explosion_str {gResPath + "images/explosion.png"};
-
-	const std::string shoot_sound_str {gResPath + "sounds/shoot.wav"};
-	const std::string explosion_sound_str {gResPath + "sounds/invaderkilled.wav"};
+	 
 }
 
 
