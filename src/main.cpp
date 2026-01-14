@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Sprite.h"
 #include "Rocketship.h"
+#include "Background.h"
 #include "FallingEnemy.h"
 #include "Bullet.h"
 #include "Label.h"
@@ -14,7 +15,6 @@ LabelPtr label2;
 
 void setupGame()
 {
-
     // Skapa bakgrunder och lägg till i engine
     auto bg1 = std::make_shared<demo::Background>(0);
     auto bg2 = std::make_shared<demo::Background>(-constants::gScreenHeight);

@@ -10,10 +10,11 @@ namespace constants
    	inline int gScreenHeight = 480; // Gör skärmen 480 pixlar hög
 
 
-   	// PATH TO YOUR RESOURCE FOLDER 'resources', 'gResPath'
+   	// PATH TO OUR RESOURCE FOLDER 'resources', 'gResPath'
    	const std::string gResPath { "./resources/" };
-	// PATH'S TO ALL YOUR EXTERNAL RESOURCES using 'gResPath'
-	
+
+	// PATHS TO ALL OUR EXTERNAL RESOURCES using 'gResPath'
+	const std::string fontPath { gResPath + "fonts/arial.ttf" };
 	const std::string rocketship_str {gResPath + "images/rocketship.png"};  //ger etiketter på bilderna som ska nås
 	const std::string rocketship2_str {gResPath + "images/rocketship-2.png"};
 	const std::string alien_str {gResPath + "images/enemy.png"}; // fixed typo
