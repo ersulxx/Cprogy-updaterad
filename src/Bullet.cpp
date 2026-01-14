@@ -44,7 +44,7 @@ namespace demo
 
             if (elapsed >= duration)
             {
-                eng.remove(shared_from_this());
+                eng.remove(this-> shared_from_this());
             }
         }
     };
