@@ -12,11 +12,11 @@ namespace demo {
 
         public:
 
-        virtual void tick() override;
+        
 
         ~Label();
 
-        void tick() {}
+        void tick();
 
         void draw();
 
