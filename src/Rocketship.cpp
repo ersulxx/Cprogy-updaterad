@@ -50,6 +50,7 @@ void Rocketship::onKeyRight() {
     }
 }
 
+//hanterar kullorna som skjuts
 void Rocketship::rocketshipFireBullet() {
     
 
