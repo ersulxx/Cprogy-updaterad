@@ -25,14 +25,9 @@ namespace demo {
         void remove(SpritePtr spr);
         void run();
 
-        void tickAll();
-        void processAddedRemoved();
-        void handleMoveableInputKeyDown (const SDL_Event& event);
-        void handleCollisions ();
-        void renderAll();
+        
 
         std::vector<SpritePtr> sprites, added, removed;
-        void clearAllSprites();
 
 
     private:
