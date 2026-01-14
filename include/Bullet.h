@@ -7,7 +7,7 @@ class Bullet : public demo::MoveableSprite {
 
     public:
     
-    Bullet(float x, float y, float bulletSpeed); //x=horistontellt/width, y=vertikalt/height
+    Bullet(float x, float y, float bulletSpeed); //x=horistontellt, y=vertikalt
     
     void tick() override;
 
