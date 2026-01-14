@@ -65,7 +65,7 @@ void Bullet::tick()
 
     if (getRect().y + getRect().h < 0)
     {
-        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(shared_from_this()));
+        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
     }
 }
 
@@ -79,7 +79,7 @@ void Bullet::onCollisionWith(demo::MoveableSpritePtr other)
 
 
         demo::eng.remove(other);
-        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(shared_from_this()));
+        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
 
         enemyHits++;
         label2->setText(std::to_string(enemyHits));
