@@ -27,7 +27,7 @@ namespace demo {
 
         virtual void onKeyDown();
 
-        virtual void onCollisionWith(MoveableSpritePtr other);
+        virtual void onCollisionWith(SpritePtr other);
         
         
         ~MoveableSprite();

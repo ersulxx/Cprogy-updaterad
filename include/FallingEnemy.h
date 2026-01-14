@@ -10,7 +10,7 @@ class FallingEnemy : public demo::MoveableSprite {
 
     void tick() override;
 
-    void onCollisionWith(demo::MoveableSpritePtr other) override;
+    void onCollisionWith(demo::SpritePtr other) override;
 
 
     private:

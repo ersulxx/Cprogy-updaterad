@@ -11,7 +11,7 @@ class Bullet : public demo::MoveableSprite, public std::enable_shared_from_this<
     
     void tick() override;
 
-    void onCollisionWith(demo::MoveableSpritePtr other) override;
+    void onCollisionWith(demo::SpritePtr other) override;
 
     private:
     float speed;
