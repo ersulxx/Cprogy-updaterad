@@ -5,17 +5,15 @@
 #include "Label.h"
 #pragma once
 
-extern int enemyhits;
-extern demo::Label*Label2;
 
 using namespace demo;
 namespace game {
-    class CountHits {
+    class UpdateScore {
         
         public:
         static void setLabel(demo::LabelPtr label) { scoreLabel = label; }
-        static void funk();
-        static void reset();
+        static void increaseScore();
+        static void resetScore();
 
         private:
         static int score;

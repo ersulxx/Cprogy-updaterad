@@ -142,7 +142,7 @@ namespace demo {
                             SDL_MESSAGEBOX_INFORMATION,
                             getWin(),
                             "Game Over",
-                            "En fiende nådde botten! Vad vill du göra?",
+                            "Vad vill du göra?",
                             SDL_arraysize(buttons),
                             buttons,
                             NULL};

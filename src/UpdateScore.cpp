@@ -1,20 +1,20 @@
 #include <string>
-#include "CountHits.h"
+#include "UpdateScore.h"
 using namespace std;
 
 namespace game {
 
-    int CountHits::score = 0;
-    demo::LabelPtr CountHits::scoreLabel = nullptr;
+    int UpdateScore::score = 0;
+    demo::LabelPtr UpdateScore::scoreLabel = nullptr;
 
-    void CountHits::funk() {
+    void UpdateScore::increaseScore() {
         score++;
         if (scoreLabel) {
             scoreLabel->setText("Score: " + to_string(score));
         }
     }
 
-    void CountHits::reset() {
+    void UpdateScore::resetScore() {
         score = 0;
         if (scoreLabel) {
             scoreLabel->setText("Score: 0");
