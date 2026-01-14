@@ -30,7 +30,7 @@ namespace demo {
         win = SDL_CreateWindow("Our Game", constants::gScreenWidth, constants::gScreenHeight, SDL_WINDOW_RESIZABLE);
         ren = SDL_CreateRenderer(win, NULL);
 
-        //const std::string fontPath = constants::gResPath + "fonts/arial.ttf";
+        
         font = TTF_OpenFont(constants::fontPath.c_str(), 24);
     }
 
