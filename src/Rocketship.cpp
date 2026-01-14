@@ -31,7 +31,7 @@ void Rocketship::tick() {
 
 
 void Rocketship::onKeyUp() {
-    shoot();
+    rocketshipFireBullet();
 }
     
 
@@ -50,7 +50,7 @@ void Rocketship::onKeyRight() {
     }
 }
 
-void Rocketship::shoot() {
+void Rocketship::rocketshipFireBullet() {
     
 
     float bulletX = getRect().x + (getRect().w / 12);
