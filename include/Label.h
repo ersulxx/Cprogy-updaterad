@@ -10,9 +10,7 @@ namespace demo {
 
     class Label : public Sprite {
 
-        public:
-
-        
+        public: 
 
         ~Label();
 
@@ -20,7 +18,7 @@ namespace demo {
 
         void draw();
 
-        void onResize(int newW, int newH) override;
+        void onResize(int newWidth, int newHeight) override;
 
         void setText(std::string newText);
 
@@ -33,6 +31,6 @@ namespace demo {
 
         private:
         std::string text;
-        SDL_Texture* texture;
+        SDL_Texture* texture; //minneshantering sker i Label.cpp 
     };
 }
