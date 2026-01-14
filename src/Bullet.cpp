@@ -7,7 +7,7 @@
 #include <memory>
 #include "UpdateScore.h"
 
-// namespace std vet ej om den är nödvändig
+
 
 Bullet::Bullet(float x, float y, float speed) : demo::MoveableSprite(constants::bullet_str, x, y), speed(speed)
 {
@@ -34,6 +34,6 @@ void Bullet::onCollisionWith(demo::SpritePtr other)
         demo::eng.remove(other);
         demo::eng.remove(shared_from_this());
         
-        game::CountHits::increaseScore();
+        game::UpdateScore::increaseScore();
     }
 }
