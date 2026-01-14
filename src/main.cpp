@@ -37,6 +37,7 @@ void setupGame()
     label2 = Label::getLabelPtr(200, 150, 40, 50, "0");
     eng.add(label);
     eng.add(label2);
+    
 }
 
 
