@@ -12,6 +12,29 @@ using namespace demo;
 using namespace game;
 
 
+class EnemySpawner : public demo::Sprite {
+public:
+    Uint64 lastSpawn = 0;
+    const Uint64 interval = 2000;
+
+    EnemySpawner() : demo::Sprite(0, 0, 0, 0) {
+        lastSpawn = SDL_GetTicks();
+    }
+
+    void tick() override {
+        Uint64 now = SDL_GetTicks();
+        if (now > lastSpawn + interval) {
+            float x = static_cast<float>(std::rand() % (constants::gScreenWidth - 100));
+            // Här skapas fienden och läggs till i motorn
+            eng.add(std::make_shared<FallingEnemy>(constants::alien_str, x, -50, 2.0f + (std::rand() % 3)));
+            lastSpawn = now;
+        }
+    }
+    // Vi skriver över draw så att spawnern inte försöker rita något
+    void draw() override {} 
+};
+
+
 void setupGame()
 {
     // Skapa bakgrunder och lägg till i engine
@@ -29,6 +52,9 @@ void setupGame()
     auto e2 = std::make_shared<FallingEnemy>(constants::alien2_str, 300, -200, 1.5f);
     eng.add(e1);
     eng.add(e2);
+
+    auto spawner = std::make_shared<EnemySpawner>();
+    eng.add(spawner);
 
     auto scoreLabel = demo::Label::getLabelPtr(500, 20, 120, 30, "Score: 0");
     eng.add(scoreLabel);

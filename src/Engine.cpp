@@ -5,21 +5,37 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <iostream>
+#include <algorithm>
 
 namespace demo {
 
-    Engine::Engine() {
-        if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
+    Engine::Engine()
+    {
+        if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
+        {
+            std::cerr << "SDL_Init failed: " << SDL_GetError() << std::endl;
             exit(EXIT_FAILURE);
         }
-        TTF_Init();
-        win = SDL_CreateWindow("Generisk Motor", constants::gScreenWidth, constants::gScreenHeight, 0);
+        if (!TTF_Init())
+        {
+            std::cerr << "TTF_Init failed: " << SDL_GetError() << std::endl;
+        }
+
+        // Vi behåller fönstret inställt på RESIZABLE som du ville ha det
+        win = SDL_CreateWindow("Our Game", constants::gScreenWidth, constants::gScreenHeight, SDL_WINDOW_RESIZABLE);
         ren = SDL_CreateRenderer(win, NULL);
+
         font = TTF_OpenFont(constants::fontPath.c_str(), 24);
     }
 
-    Engine::~Engine() {
-        if (font) TTF_CloseFont(font);
+    Engine::~Engine()
+    {
+        sprites.clear();
+        added.clear();
+        removed.clear();
+
+        if (font)
+            TTF_CloseFont(font);
         TTF_Quit();
         SDL_DestroyRenderer(ren);
         SDL_DestroyWindow(win);
@@ -28,72 +44,136 @@ namespace demo {
 
     void Engine::add(SpritePtr spr) { added.push_back(spr); }
     void Engine::remove(SpritePtr spr) { removed.push_back(spr); }
+    
+    SDL_Renderer* Engine::getRen() const { return ren; }
+    SDL_Window* Engine::getWin() const { return win; }
+    TTF_Font *Engine::getFont() const { return font; }
 
-    void Engine::run() {
-        bool running = true;
+    void Engine::run()
+    {
         const int FPS = 60;
         const int TICKINTERVAL = 1000 / FPS;
+        bool running = true;
 
-        while (running) {
+        while (running)
+        {
             Uint64 nextTick = SDL_GetTicks() + TICKINTERVAL;
             SDL_Event event;
 
-            while (SDL_PollEvent(&event)) {
-                if (event.type == SDL_EVENT_QUIT) running = false;
-                // ... Hantera tangenter (KeyUp/Down etc) ...
+            while (SDL_PollEvent(&event))
+            {
+                switch(event.type) {
+                    case SDL_EVENT_QUIT:
+                        running = false;
+                        break;
+
+                    case SDL_EVENT_KEY_DOWN:
+                    {
+                        for (SpritePtr spr : sprites) {
+                            auto movable = std::dynamic_pointer_cast<MoveableSprite>(spr);
+                            if (!movable) continue;
+                            
+                            switch(event.key.scancode) {
+                                case SDL_SCANCODE_UP:    movable->onKeyUp();    break;
+                                case SDL_SCANCODE_LEFT:  movable->onKeyLeft();  break;
+                                case SDL_SCANCODE_RIGHT: movable->onKeyRight(); break;
+                                case SDL_SCANCODE_DOWN:  movable->onKeyDown();  break;
+                                default: break;
+                            }
+                        }
+                    }
+                    break;
+                }
             }
 
-            // Uppdatera alla objekt
-            for (SpritePtr spr : sprites) spr->tick();
+            // 1. Uppdatera alla sprites
+            for (SpritePtr spr : sprites)
+                spr->tick();
 
-            // Hantera Game Over (Helt generiskt!)
-            for (SpritePtr spr : sprites) {
-                if (spr->canTriggerGameOver()) {
-                    if (spr->getRect().y > constants::gScreenHeight - 60) {
-                        
+            // 2. Hantera tillagda objekt
+            for (SpritePtr spr : added)
+                sprites.push_back(spr);
+            added.clear();
+
+            // 3. KONTROLLERA FÖRLUST
+            for (SpritePtr spr : sprites)
+            {
+                if (spr->canTriggerGameOver())
+                {
+                    // Och kollar om det specifika objektet nått botten
+                    if (spr->getRect().y > constants::gScreenHeight - 60)
+                    {
+                        // Rita en sista gång så man ser förlusten
+                        SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+                        SDL_RenderClear(ren);
+                        for (SpritePtr s : sprites) s->draw();
+                        SDL_RenderPresent(ren);
+
                         const SDL_MessageBoxButtonData buttons[] = {
-                            { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "Quit" }
+                            {SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "Quit"},
                         };
+
                         const SDL_MessageBoxData messageboxdata = {
-                            SDL_MESSAGEBOX_INFORMATION, win, "Game Over", 
-                            "Spelet är slut!", SDL_arraysize(buttons), buttons, NULL
-                        };
+                            SDL_MESSAGEBOX_INFORMATION,
+                            getWin(),
+                            "Game Over",
+                            "Spelet är slut!",
+                            SDL_arraysize(buttons),
+                            buttons,
+                            NULL};
 
                         int buttonid;
                         SDL_ShowMessageBox(&messageboxdata, &buttonid);
-                        running = false;
+
+                        running = false; // Stäng ner motorn
                         break;
                     }
                 }
             }
 
-            // Lägg till/Ta bort sprites
-            for (SpritePtr spr : added) sprites.push_back(spr);
-            added.clear();
-
-            for (SpritePtr spr : removed) {
+            // 4. Hantera borttagna objekt
+            for (SpritePtr spr : removed)
+            {
                 auto it = std::find(sprites.begin(), sprites.end(), spr);
-                if (it != sprites.end()) sprites.erase(it);
+                if (it != sprites.end()) {
+                    sprites.erase(it);
+                }
             }
             removed.clear();
 
-            // Rita allt
+            // 5. KOLLISIONLOOP
+            for (SpritePtr sp1 : sprites) {
+                auto m1 = std::dynamic_pointer_cast<MoveableSprite>(sp1);
+                if (!m1) continue;
+                
+                for (SpritePtr sp2 : sprites) {
+                    auto m2 = std::dynamic_pointer_cast<MoveableSprite>(sp2);
+                    if (!m2 || sp1 == sp2) continue;
+                    
+                    if (m1->collidedWith(m2))
+                    {
+                        m1->onCollisionWith(m2);
+                        m2->onCollisionWith(m1);
+                    }
+                }
+            }
+
+            // 6. Rendera (Rita)
             SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
             SDL_RenderClear(ren);
-            for (SpritePtr spr : sprites) spr->draw();
+            for (SpritePtr spr : sprites)
+                spr->draw();
             SDL_RenderPresent(ren);
 
+            // 7. FPS Delay
             Sint64 delay = nextTick - SDL_GetTicks();
-            if (delay > 0) SDL_Delay(delay);
+            if (delay > 0)
+                SDL_Delay(delay);
         }
     }
 
     Engine eng;
 }
-
-
-
-
 
 
 /*#include "Engine.h"
