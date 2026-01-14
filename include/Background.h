@@ -1,8 +1,8 @@
 #pragma once
-#include "MovableSprite.h"
+#include "MoveableSprite.h"
 
 namespace demo {
-    class Background : public MovableSprite {
+    class Background : public MoveableSprite {
         public:
             Background(float y);
             void tick() override;
