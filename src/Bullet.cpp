@@ -8,8 +8,8 @@
 
 // namespace std vet ej om den är nödvändig
 
-extern int enemyHits;
-extern demo::LabelPtr label2;
+int enemyHits=0;
+demo::LabelPtr label2=nullptr;
 
 namespace demo
 {
@@ -65,7 +65,7 @@ void Bullet::tick()
 
     if (getRect().y + getRect().h < 0)
     {
-        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
+        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(std::enable_shared_from_this<demo::Sprite>::shared_from_this()));
     }
 }
 
@@ -79,7 +79,7 @@ void Bullet::onCollisionWith(demo::MoveableSpritePtr other)
 
 
         demo::eng.remove(other);
-        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(this-> shared_from_this()));
+        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(std::enable_shared_from_this<demo::Sprite>::shared_from_this()));
 
         enemyHits++;
         label2->setText(std::to_string(enemyHits));

@@ -3,6 +3,10 @@
 #include "Engine.h"
 #include "Sprite.h"
 #include "Label.h"
+#pragma once
+
+extern int enemyhits;
+extern demo::Label*Label2;
 
 using namespace demo;
 namespace game {

@@ -3,7 +3,7 @@
 #include "MoveableSprite.h"
 #include <memory>
 
-class Bullet : public demo::MoveableSprite, public std::enable_shared_from_this<Bullet> {
+class Bullet : public demo::MoveableSprite {
 
     public:
     

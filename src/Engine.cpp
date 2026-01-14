@@ -18,7 +18,7 @@ namespace demo {
 
     Engine::Engine()
     {
-        if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+        if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
         {
             std::cerr << "SDL_Init failed: " << SDL_GetError() << std::endl;
             exit(EXIT_FAILURE);
@@ -148,7 +148,7 @@ namespace demo {
                             NULL};
 
                         int buttonid;
-                        if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
+                        if (!SDL_ShowMessageBox(&messageboxdata, &buttonid))
                         {
                             SDL_Log("error displaying message box");
                             running = false; 
