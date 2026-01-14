@@ -32,19 +32,19 @@ namespace demo {
         return text;
     }
 
-    LabelPtr Label::getLabelPtr(float x, float y, float w, float h, std::string txt) {
-        return LabelPtr(new Label(x, y, w, h, txt));
+    LabelPtr Label::getLabelPtr(float x, float y, float width, float height, std::string txt) {
+        return LabelPtr(new Label(x, y, width, height, txt));
     }
 
-    Label::Label(float x, float y, float w, float h, std::string txt): Sprite(x, y, w, h), text(txt), texture(nullptr) {
-        getRect().w = w;
-        getRect().h = h;
+    Label::Label(float x, float y, float width, float height, std::string txt): Sprite(x, y, width, height), text(txt), texture(nullptr) {
+        getRect().w = width;
+        getRect().h = height;
         setText(text);
     }
 
-    void Label::onResize(int newW, int newH)
+    void Label::onResize(int newWidth, int newHeigth)
     {
-        getRect().x = newW - getRect().w - 20.0f;
+        getRect().x = newWidth - getRect().w - 20.0f;
         getRect().y = 20.0f;
     }
 
