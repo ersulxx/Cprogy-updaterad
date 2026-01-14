@@ -24,10 +24,10 @@ namespace demo {
 
         std::string getText() const;
 
-        static LabelPtr getLabelPtr(float x, float y, float w, float h, std::string txt);
+        static LabelPtr getLabelPtr(float x, float y, float width, float height, std::string txt);
 
         protected:
-        Label(float x, float y, float w, float h, std::string txt);
+        Label(float x, float y, float width, float height, std::string txt);
 
         private:
         std::string text;
