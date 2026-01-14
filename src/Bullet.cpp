@@ -5,14 +5,9 @@
 #include "FallingEnemy.h"
 #include "Label.h"
 #include <memory>
-#include "CountHits.h"
+#include "UpdateScore.h"
 
 // namespace std vet ej om den är nödvändig
-
-//int enemyHits=0;
-//demo::LabelPtr label2=nullptr;
-
-
 
 Bullet::Bullet(float x, float y, float speed) : demo::MoveableSprite(constants::bullet_str, x, y), speed(speed)
 {
@@ -23,7 +18,6 @@ Bullet::Bullet(float x, float y, float speed) : demo::MoveableSprite(constants::
 
 void Bullet::tick()
 {
-
     move(0.0f, -speed);
 
     if (getRect().y + getRect().h < 0)
@@ -37,15 +31,9 @@ void Bullet::onCollisionWith(demo::SpritePtr other)
 
     if (std::dynamic_pointer_cast<::FallingEnemy>(other))
     {
-        //auto explosion = std::make_shared<demo::Explosion>(getRect().x, getRect().y);
-       // demo::eng.add(explosion);
-
-
         demo::eng.remove(other);
         demo::eng.remove(shared_from_this());
-        game::CountHits::funk();
-
-        //enemyHits++;
-        //label2->setText(std::to_string(enemyHits));
+        
+        game::CountHits::increaseScore();
     }
 }
