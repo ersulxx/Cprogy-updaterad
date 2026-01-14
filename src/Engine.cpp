@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Constants.h"
 #include "Sprite.h"
 #include "MoveableSprite.h"
 #include "Label.h"
@@ -29,9 +30,8 @@ namespace demo {
         win = SDL_CreateWindow("Our Game", constants::gScreenWidth, constants::gScreenHeight, SDL_WINDOW_RESIZABLE);
         ren = SDL_CreateRenderer(win, NULL);
 
-        //2 engine ska vara i constant
-        const std::string fontPath = constants::gResPath + "fonts/arial.ttf";
-        font = TTF_OpenFont(fontPath.c_str(), 24);
+        //const std::string fontPath = constants::gResPath + "fonts/arial.ttf";
+        font = TTF_OpenFont(constants::fontPath.c_str(), 24);
     }
 
     Engine::~Engine()
