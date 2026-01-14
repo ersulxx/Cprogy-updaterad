@@ -18,7 +18,7 @@ class Rocketship : public demo::MoveableSprite {
     void onKeyRight() override;
 
     private:
-    void shoot();
+    void rocketshipFireBullet();
     
 
 };
