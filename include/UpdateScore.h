@@ -6,16 +6,15 @@
 
 
 using namespace demo;
-namespace game {
-    class UpdateScore {
-        
-        public:
-        static void setLabel(demo::LabelPtr label) { scoreLabel = label; }
-        static void increaseScore();
-        static void resetScore();
 
-        private:
-        static int score;
-        static demo::LabelPtr scoreLabel;
-    }; 
-}
+class UpdateScore {
+        
+    public:
+    static void setLabel(demo::LabelPtr label) { scoreLabel = label; }
+    static void increaseScore();
+    static void resetScore();
+    
+    private:
+    static int score;
+    static demo::LabelPtr scoreLabel;
+}; 

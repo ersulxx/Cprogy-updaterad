@@ -9,7 +9,6 @@
 
 using namespace std;
 using namespace demo;
-using namespace game;
 
 
 class EnemySpawner : public demo::Sprite {

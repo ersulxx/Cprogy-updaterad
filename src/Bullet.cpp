@@ -34,6 +34,6 @@ void Bullet::onCollisionWith(demo::SpritePtr other)
         demo::eng.remove(other);
         demo::eng.remove(shared_from_this());
         
-        game::UpdateScore::increaseScore();
+        UpdateScore::increaseScore();
     }
 }
