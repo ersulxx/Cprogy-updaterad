@@ -27,6 +27,7 @@ public:
             float x = static_cast<float>(std::rand() % (constants::gScreenWidth - 100));
             // Här skapas fienden och läggs till i motorn
             eng.add(std::make_shared<FallingEnemy>(constants::alien_str, x, -50, 2.0f + (std::rand() % 3)));
+            eng.add(std::make_shared<FallingEnemy>(constants::alien2_str, x, -50, 2.0f + (std::rand() % 3)));
             lastSpawn = now;
         }
     }
