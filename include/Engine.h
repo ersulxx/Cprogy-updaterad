@@ -23,7 +23,7 @@ namespace demo {
 
         void add(SpritePtr spr);
         void remove(SpritePtr spr);
-        //void run();
+        void run();
 
         void tickAll();
         void processAddedRemoved();
