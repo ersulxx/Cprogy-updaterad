@@ -42,7 +42,7 @@ namespace demo {
         setText(text);
     }
 
-    void Label::onResize(int newWidth, int newHeigth)
+    void Label::onResize(int newWidth, int newHeight)
     {
         getRect().x = newWidth - getRect().w - 20.0f;
         getRect().y = 20.0f;
