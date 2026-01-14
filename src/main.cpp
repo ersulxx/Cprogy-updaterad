@@ -5,14 +5,16 @@
 #include "FallingEnemy.h"
 #include "Bullet.h"
 #include "Label.h"
+#include "CountHits.h"
 
 using namespace std;
 using namespace demo;
+using namespace game;
 
-int enemyHits = 0;
+//int enemyHits = 0;
 
-LabelPtr label;
-LabelPtr label2;
+//LabelPtr label;
+//LabelPtr label2;
 
 void setupGame()
 {
@@ -33,10 +35,14 @@ void setupGame()
     eng.add(e2);
 
     // Skapa labels och lägg till i engine
-    label = Label::getLabelPtr(150, 150, 40, 50, "Antal nedskuttna:");
-    label2 = Label::getLabelPtr(200, 150, 40, 50, "0");
-    eng.add(label);
-    eng.add(label2);
+    //label = Label::getLabelPtr(150, 150, 40, 50, "Antal nedskuttna:");
+    //label2 = Label::getLabelPtr(200, 150, 40, 50, "0");
+    //eng.add(label);
+    //eng.add(label2);
+    auto scoreLabel = demo::Label::getLabelPtr(500, 20, 120, 30, "Score: 0");
+    demo::eng.add(scoreLabel);
+
+    game::CountHits::setLabel(scoreLabel);
     
 }
 
