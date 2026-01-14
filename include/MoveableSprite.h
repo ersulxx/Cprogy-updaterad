@@ -27,10 +27,12 @@ namespace demo {
 
         virtual void onKeyDown();
 
+        //hanterar kollision
         virtual void onCollisionWith(SpritePtr other);
         
         
         ~MoveableSprite();
+        
         
         bool collidedWith(MoveableSpritePtr other);
 
