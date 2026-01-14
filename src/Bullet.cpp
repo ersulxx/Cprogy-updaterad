@@ -22,8 +22,8 @@ namespace demo
         Explosion(float x, float y) : MoveableSprite(constants::explosion_str, x, y)
         {
             spawnTime = SDL_GetTicks();
-            rect.w = 40;
-            rect.h = 40;
+            getRect().w = 40;
+            getRect().h = 40;
             SDL_SetTextureBlendMode(getTexture(), SDL_BLENDMODE_BLEND); //Det gör att bilden kan ha transparens
         }
 
@@ -37,10 +37,10 @@ namespace demo
                 alpha = 0;
             SDL_SetTextureAlphaMod(getTexture(), (Uint8)alpha); //Skickar instruktionen för att rita bilden med  den genomskinligheten
 
-            rect.w += 0.8f;
-            rect.h += 0.8f;
-            rect.x -= 0.4f;
-            rect.y -= 0.4f;
+            getRect().w += 0.8f;
+            getRect().h += 0.8f;
+            getRect().x -= 0.4f;
+            getRect().y -= 0.4f;
 
             if (elapsed >= duration)
             {
@@ -74,7 +74,7 @@ void Bullet::onCollisionWith(demo::MoveableSpritePtr other)
 
     if (std::dynamic_pointer_cast<::FallingEnemy>(other))
     {
-        auto explosion = std::make_shared<demo::Explosion>(rect.x, rect.y);
+        auto explosion = std::make_shared<demo::Explosion>(getRect().x, getRect().y);
         demo::eng.add(explosion);
 
 

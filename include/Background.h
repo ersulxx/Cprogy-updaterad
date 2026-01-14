@@ -5,7 +5,7 @@ namespace demo {
     class Background : public MoveableSprite {
         public:
             Background(float y);
-            void tick() override;
-            void onResize(int newW, int newH) override;
+            void tick() ;
+            void onResize(int newW, int newH);
     };
 }

@@ -23,14 +23,24 @@ namespace demo {
 
         void add(SpritePtr spr);
         void remove(SpritePtr spr);
-        void run();
+        //void run();
+
+        void tickAll();
+        void processAddedRemoved();
+        void handleMoveableInputKeyDown (const SDL_Event& event);
+        void handleCollisions ();
+        void renderAll();
+
+        std::vector<SpritePtr> sprites, added, removed;
+        void clearAllSprites();
+
 
     private:
-        SDL_Window* win;
-        SDL_Renderer* ren;
-        TTF_Font* font;
+        SDL_Window* win = nullptr;
+        SDL_Renderer* ren = nullptr;
+        TTF_Font* font = nullptr;
         
-        std::vector<SpritePtr> sprites, added, removed;
+        
     };
 
     extern Engine eng;
