@@ -6,9 +6,6 @@
 namespace gameEngine
 {
 
-    // class Sprite;
-
-    // typedef std::shared_ptr<Sprite> SpritePtr;
 
     class Sprite: public std::enable_shared_from_this<Sprite>
     {
