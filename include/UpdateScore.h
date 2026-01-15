@@ -1,8 +1,7 @@
-
+#pragma once
 #include "Engine.h"
 #include "Sprite.h"
 #include "Label.h"
-#pragma once
 
 
 using namespace gameEngine;

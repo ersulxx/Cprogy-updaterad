@@ -43,10 +43,5 @@ namespace gameEngine {
         protected:
         MoveableSprite(std::string path, float x, float y);
 
-
-
-
-
-
     };
 }
