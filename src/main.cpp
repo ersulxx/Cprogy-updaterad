@@ -38,20 +38,20 @@ public:
 void setupGame()
 {
     // Skapa bakgrunder och lägg till i engine
-    auto bg1 = std::make_shared<demo::Background>(0);
-    auto bg2 = std::make_shared<demo::Background>(-constants::gScreenHeight);
-    eng.add(bg1);
-    eng.add(bg2);
+    auto background1 = std::make_shared<demo::Background>(0);
+    auto background2 = std::make_shared<demo::Background>(-constants::gScreenHeight);
+    eng.add(background1);
+    eng.add(background2);
 
     // Skapa en spelare(Rocketship) och lägg till i engine
     auto player = std::make_shared<Rocketship>();
     eng.add(player);
 
     // Skapa fiender och lägg till i engine
-    auto e1 = std::make_shared<FallingEnemy>(constants::alien_str, 100, -40, 2.0f);
-    auto e2 = std::make_shared<FallingEnemy>(constants::alien2_str, 300, -200, 1.5f);
-    eng.add(e1);
-    eng.add(e2);
+    auto enemy1 = std::make_shared<FallingEnemy>(constants::alien_str, 100, -40, 2.0f);
+    auto enemy2 = std::make_shared<FallingEnemy>(constants::alien2_str, 300, -200, 1.5f);
+    eng.add(enemy1);
+    eng.add(enemy2);
 
     auto spawner = std::make_shared<EnemySpawner>();
     eng.add(spawner);

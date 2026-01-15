@@ -32,11 +32,11 @@ namespace demo {
         return text;
     }
 
-    LabelPtr Label::getLabelPtr(float x, float y, float width, float height, std::string txt) {
-        return LabelPtr(new Label(x, y, width, height, txt));
+    LabelPtr Label::getLabelPtr(float x, float y, float width, float height, std::string initialText) {
+        return LabelPtr(new Label(x, y, width, height, initialText));
     }
 
-    Label::Label(float x, float y, float width, float height, std::string txt): Sprite(x, y, width, height), text(txt), texture(nullptr) {
+    Label::Label(float x, float y, float width, float height, std::string initialText): Sprite(x, y, width, height), text(initialText), texture(nullptr) {
         getRect().w = width;
         getRect().h = height;
         setText(text);
