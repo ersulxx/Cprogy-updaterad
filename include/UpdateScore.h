@@ -5,13 +5,13 @@
 #pragma once
 
 
-using namespace demo;
+using namespace gameEngine;
 
 class UpdateScore {
         
     public:
     //sätter värdet score till noll
-    static void setLabel(demo::LabelPtr label) { scoreLabel = label; }
+    static void setLabel(gameEngine::LabelPtr label) { scoreLabel = label; }
     
     static void increaseScore();
     static void resetScore();
@@ -19,5 +19,5 @@ class UpdateScore {
     private:
     static int score;
     //som har värde numret
-    static demo::LabelPtr scoreLabel;
+    static gameEngine::LabelPtr scoreLabel;
 }; 

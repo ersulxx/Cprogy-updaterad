@@ -5,7 +5,7 @@
 #include "Engine.h"
 #include "Sprite.h"
 
-namespace demo {
+namespace gameEngine {
 
     void MoveableSprite::tick() {}
     

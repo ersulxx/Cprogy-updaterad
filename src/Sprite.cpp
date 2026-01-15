@@ -3,7 +3,7 @@
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
 
-namespace demo {
+namespace gameEngine {
     //om det finns en bild satt så tas den bort
     Sprite::~Sprite() {
         if (image) {

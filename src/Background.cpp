@@ -1,7 +1,7 @@
 #include "Background.h"
 #include "Engine.h"
 
-namespace demo
+namespace gameEngine
 {
     Background::Background(float start) : MoveableSprite(constants::background2_str, 0, start)
     {

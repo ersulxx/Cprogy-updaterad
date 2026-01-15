@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace demo {
+namespace gameEngine {
 
     class Label;
     typedef std::shared_ptr<Label> LabelPtr;

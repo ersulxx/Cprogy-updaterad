@@ -5,7 +5,7 @@
 #include <string>
 #include <SDL3/SDL.h>
 
-namespace demo {
+namespace gameEngine {
 
     class MoveableSprite;
 

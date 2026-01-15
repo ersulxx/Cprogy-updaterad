@@ -4,7 +4,7 @@
 #include "Engine.h"
 #include "Sprite.h"
 
-Rocketship::Rocketship() : demo::MoveableSprite(constants::rocketship_str, 0, 0) {
+Rocketship::Rocketship() : gameEngine::MoveableSprite(constants::rocketship_str, 0, 0) {
 
     getRect().w = 64.f;
     getRect().h = 64.f;
@@ -59,6 +59,6 @@ void Rocketship::rocketshipFireBullet() {
 
     if (bulletY > 0) {
         auto bullet = std::make_shared<Bullet>(bulletX, bulletY, 10.0f);
-        demo::eng.add(bullet);
+        gameEngine::eng.add(bullet);
     }
 }

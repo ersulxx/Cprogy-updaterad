@@ -7,7 +7,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 
 
-namespace demo {
+namespace gameEngine {
 
     class Sprite;
     typedef std::shared_ptr<Sprite> SpritePtr;

@@ -9,7 +9,7 @@
 
 
 
-Bullet::Bullet(float x, float y, float bulletSpeed) : demo::MoveableSprite(constants::bullet_str, x, y), bulletSpeed(bulletSpeed)
+Bullet::Bullet(float x, float y, float bulletSpeed) : gameEngine::MoveableSprite(constants::bullet_str, x, y), bulletSpeed(bulletSpeed)
 {
 
     getRect().w *= 0.05f;
@@ -22,17 +22,17 @@ void Bullet::tick()
 
     if (getRect().y + getRect().h < 0)
     {
-        demo::eng.remove(std::static_pointer_cast<demo::Sprite>(std::enable_shared_from_this<demo::Sprite>::shared_from_this()));
+        gameEngine::eng.remove(std::static_pointer_cast<gameEngine::Sprite>(std::enable_shared_from_this<gameEngine::Sprite>::shared_from_this()));
     }
 }
 
-void Bullet::onCollisionWith(demo::SpritePtr other)
+void Bullet::onCollisionWith(gameEngine::SpritePtr other)
 {
 
     if (std::dynamic_pointer_cast<::FallingEnemy>(other))
     {
-        demo::eng.remove(other);
-        demo::eng.remove(shared_from_this());
+        gameEngine::eng.remove(other);
+        gameEngine::eng.remove(shared_from_this());
         
         UpdateScore::increaseScore();
     }

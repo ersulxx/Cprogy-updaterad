@@ -4,7 +4,7 @@
 #include "Engine.h"
 
 
-namespace demo {
+namespace gameEngine {
 
     void Label::tick() {};
 

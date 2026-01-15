@@ -5,7 +5,7 @@
 
 
 // Konstruktorn sätter bild, startposition och hastighet
-FallingEnemy::FallingEnemy(const std::string &img, float x, float y, float speed) : demo::MoveableSprite(img, x, y), speed(speed)
+FallingEnemy::FallingEnemy(const std::string &img, float x, float y, float speed) : gameEngine::MoveableSprite(img, x, y), speed(speed)
 {
 
     // Skalar ner storleken på fienden till 10% av originalstorleken
@@ -27,7 +27,7 @@ void FallingEnemy::tick()
 }
 
 // Hanterar vad som händer när fienden krockar/kolliderar med något
-void FallingEnemy::onCollisionWith(demo::SpritePtr other)
+void FallingEnemy::onCollisionWith(gameEngine::SpritePtr other)
 {
     // Kontrolleras om det vi krockade med är en Bullet
     if (std::dynamic_pointer_cast<::Bullet>(other))
