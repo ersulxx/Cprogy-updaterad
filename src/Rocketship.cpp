@@ -29,12 +29,12 @@ void Rocketship::tick() {
     }
 }
 
-
+//skjuter
 void Rocketship::onKeyUp() {
     rocketshipFireBullet();
 }
     
-
+//skeppet går åt vänster horisontellt så länge den är inne i skärmen
 void Rocketship::onKeyLeft() {
 
     if ( getRect().x > 0 ) {
@@ -42,7 +42,7 @@ void Rocketship::onKeyLeft() {
     }
 }
     
-
+//skeppet går åt höger horisontellt så länge den är inne i skärmen
 void Rocketship::onKeyRight() {
 
     if ( getRect().x + getRect().w < constants::gScreenWidth) {
