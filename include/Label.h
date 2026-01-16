@@ -5,7 +5,7 @@
 
 namespace gameEngine {
 
-    class Label;
+    class Label;   
     typedef std::shared_ptr<Label> LabelPtr;
 
     class Label : public Sprite {
