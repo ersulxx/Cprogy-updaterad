@@ -6,12 +6,7 @@ För att spelet ska fungera korrekt måste biblioteket SDL3 vara installerade. S
 Bilder: resources/images (Innehåller bakgrund, rymdskeppet, kula och fiender)
 
 Typsnitt: resources/font (Innehåller .tff fil för texter)
-<<<<<<< HEAD:Dok/README.md.txt
-Konstanter: include/Constants.h Samtliga filnamn och grundinställningar finns centraliserade i Constants.h.
-=======
 
 Konstanter: include/Constants.h Samtliga filnamn och grundinställningar finns centraliserade i Constants.h.
-
->>>>>>> 0f3eed61d5641a798253e4c65fa91f5b29f3989c:doc/README.md.txt
 För testning verifieras att rymdskeppet kan styras med piltangenterna och att fiender spawnas korrekt. Testa även att GameOver-rutan dyker upp om en fiende når botten. 
 Tryck på uppåt piltangenten för att skjuta fiender för att verifiera att en kula skapas och att fienden försvinner när de träffas. Se också till att poängräknaren(uppe till höger sida av skärmen) uppdateras vid varje träff. 
