@@ -121,7 +121,7 @@ namespace gameEngine {
                             SDL_MESSAGEBOX_INFORMATION,
                             getWin(),
                             "Game Over",
-                            "Spelet är slut!",
+                            "",
                             SDL_arraysize(buttons),
                             buttons,
                             NULL};
