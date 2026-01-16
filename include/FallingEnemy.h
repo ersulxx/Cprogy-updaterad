@@ -4,7 +4,7 @@
 
 /* FallingEnemy är en specifik typ av MoveableSprite som rör
 sig nedåt på skärmen och kan orsaka att spelet tar slut */
-class FallingEnemy : public demo::MoveableSprite
+class FallingEnemy : public gameEngine::MoveableSprite
 {
 
 public:
@@ -12,7 +12,7 @@ public:
     FallingEnemy(const std::string &img, float x, float y, float speed);
     void tick() override;
     // Hanterar vad som händer vid krock
-    void onCollisionWith(demo::SpritePtr other) override;
+    void onCollisionWith(gameEngine::SpritePtr other) override;
     bool canTriggerGameOver() const override;
 
 private:

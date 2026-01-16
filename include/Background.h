@@ -1,7 +1,7 @@
 #pragma once
 #include "MoveableSprite.h"
 
-namespace demo {    //Gör så att spelaren kan ändra storleken på skärmen 
+namespace gameEngine {    //Gör så att spelaren kan ändra storleken på skärmen 
     class Background : public MoveableSprite {
         public:
             Background(float start);

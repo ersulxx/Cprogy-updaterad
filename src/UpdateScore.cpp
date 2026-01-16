@@ -5,7 +5,7 @@ using namespace std;
 
 
 int UpdateScore::score = 0;
-demo::LabelPtr UpdateScore::scoreLabel = nullptr;
+gameEngine::LabelPtr UpdateScore::scoreLabel = nullptr;
 
 void UpdateScore::increaseScore() {
     score++;

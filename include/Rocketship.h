@@ -2,7 +2,7 @@
 
 #include "MoveableSprite.h"
 
-class Rocketship : public demo::MoveableSprite {
+class Rocketship : public gameEngine::MoveableSprite {
 
     public:
 

@@ -4,7 +4,7 @@
 #include "Engine.h"
 #include "Sprite.h"
 
-Rocketship::Rocketship() : demo::MoveableSprite(constants::rocketship_str, 0, 0) {
+Rocketship::Rocketship() : gameEngine::MoveableSprite(constants::rocketship_str, 0, 0) {
 
     getRect().w = 64.f;
     getRect().h = 64.f;
@@ -29,12 +29,12 @@ void Rocketship::tick() {
     }
 }
 
-
+//skjuter
 void Rocketship::onKeyUp() {
     rocketshipFireBullet();
 }
     
-
+//skeppet går åt vänster horisontellt så länge den är inne i skärmen
 void Rocketship::onKeyLeft() {
 
     if ( getRect().x > 0 ) {
@@ -42,7 +42,7 @@ void Rocketship::onKeyLeft() {
     }
 }
     
-
+//skeppet går åt höger horisontellt så länge den är inne i skärmen
 void Rocketship::onKeyRight() {
 
     if ( getRect().x + getRect().w < constants::gScreenWidth) {
@@ -59,6 +59,6 @@ void Rocketship::rocketshipFireBullet() {
 
     if (bulletY > 0) {
         auto bullet = std::make_shared<Bullet>(bulletX, bulletY, 10.0f);
-        demo::eng.add(bullet);
+        gameEngine::eng.add(bullet);
     }
 }

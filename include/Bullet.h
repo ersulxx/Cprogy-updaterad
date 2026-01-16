@@ -3,7 +3,7 @@
 #include "MoveableSprite.h"
 #include <memory>
 
-class Bullet : public demo::MoveableSprite {
+class Bullet : public gameEngine::MoveableSprite {
 
     public:
     
@@ -11,7 +11,7 @@ class Bullet : public demo::MoveableSprite {
     
     void tick() override;
 
-    void onCollisionWith(demo::SpritePtr other) override;
+    void onCollisionWith(gameEngine::SpritePtr other) override;
 
     private:
     float bulletSpeed;

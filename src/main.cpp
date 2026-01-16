@@ -8,15 +8,15 @@
 #include "UpdateScore.h"
 
 using namespace std;
-using namespace demo;
+using namespace gameEngine;
 
 
-class EnemySpawner : public demo::Sprite {
+class EnemySpawner : public gameEngine::Sprite {
 public:
     Uint64 lastSpawn = 0;
     const Uint64 interval = 2000;
 
-    EnemySpawner() : demo::Sprite(0, 0, 0, 0) {
+    EnemySpawner() : gameEngine::Sprite(0, 0, 0, 0) {
         lastSpawn = SDL_GetTicks();
     }
 
@@ -38,8 +38,8 @@ public:
 void setupGame()
 {
     // Skapa bakgrunder och lägg till i engine
-    auto background1 = std::make_shared<demo::Background>(0);
-    auto background2 = std::make_shared<demo::Background>(-constants::gScreenHeight);
+    auto background1 = std::make_shared<gameEngine::Background>(0);
+    auto background2 = std::make_shared<gameEngine::Background>(-constants::gScreenHeight);
     eng.add(background1);
     eng.add(background2);
 
@@ -56,7 +56,7 @@ void setupGame()
     auto spawner = std::make_shared<EnemySpawner>();
     eng.add(spawner);
 
-    auto scoreLabel = demo::Label::getLabelPtr(500, 20, 120, 30, "Score: 0");
+    auto scoreLabel = gameEngine::Label::getLabelPtr(500, 20, 120, 30, "Score: 0");
     eng.add(scoreLabel);
 
     UpdateScore::setLabel(scoreLabel);    
@@ -66,6 +66,6 @@ void setupGame()
 int main()
 {
     setupGame();
-    demo::eng.run();
+    gameEngine::eng.run();
     return 0;
 }

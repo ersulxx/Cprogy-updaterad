@@ -3,8 +3,8 @@
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
 
-namespace demo {
-
+namespace gameEngine {
+    //om det finns en bild satt så tas den bort
     Sprite::~Sprite() {
         if (image) {
             SDL_DestroyTexture(image);
@@ -24,10 +24,13 @@ namespace demo {
         return image;
     }
 
+    //konstruktorn skapar ett Sprite obj genom att ladda från path
     Sprite::Sprite(std::string path, float x, float y) {
-
+        
+        //konvertera string till char*. SDL använder c strängar
         image = IMG_LoadTexture(eng.getRen(), path.c_str());
-
+        
+        //om image inte är satt
         if (!image) {
             std::cerr << "Failed to load texture at: " << path << std::endl;
             exit(EXIT_FAILURE);

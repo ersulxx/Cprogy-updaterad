@@ -7,7 +7,7 @@
 #include <iostream>
 #include <algorithm>
 
-namespace demo {
+namespace gameEngine {
 
     Engine::Engine()
     {
