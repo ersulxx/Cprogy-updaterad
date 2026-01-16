@@ -2,6 +2,7 @@ Instruktion för att bygga och testa:
 
 För att bygga projektet krävs en C++ kompilator samt att biblioteket SDL3 är installerat på systemet. Koden kan kompileras med make kommandot i projektets rotmapp. Detta kommer att kompilera källkoden. När bygget är klart startas spelet med kommandot ./build/debug/play 
 För att spelet ska fungera korrekt måste biblioteket SDL3 vara installerade. Spelet hämtar sina visuella och textbaserade resurser från följande relativa sökvägar(se också Constants.h)
+Om man vill köra spelet på olika operativsystem får man inte glömma bort att ändra make filen och vscode filen.
 
 Bilder: resources/images (Innehåller bakgrund, rymdskeppet, kula och fiender)
 
